@@ -1,0 +1,42 @@
+body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: rgb(50,50,50); */
+    background-image: url("./background.jpg");
+  }
+  
+  #myCanvas {
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-top: 2rem;
+  }
+  #lifelines {
+    background-color: black;
+    margin-top: 2rem;
+  }
+  #padao {
+    background-color: black;
+    margin-top: 2rem;
+    /* float: right; */
+  }
+  #owner {
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-top: 2rem;
+    /* float: right; */
+  }
+
+button {
+    margin: 10px;
+    padding: 10px;
+    background-color: orange;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.wrapper {
+  position: relative;
+  width: 1300px;
+  height: 500px;
+  }
