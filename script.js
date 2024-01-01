@@ -1,7 +1,8 @@
+
 //////////////////// Questions Objects ////////////////////
-let datascript = document.createElement('script');
-datascript.src = "./data.js";
-document.head.appendChild(datascript);
+// let datascript = document.createElement('script');
+// datascript.src = "./data.js";
+// document.head.appendChild(datascript);
 //////////////////END QUESTIONS ///////////////////////////
 
 let canvas = document.getElementById('myCanvas');
@@ -10,10 +11,12 @@ const image = new Image(canvas.width,canvas.height);
 //image.onload = drawImageActualSize; 
 image.src='./background.jpg';
 //ctx.draImage(image,0,0);
+var currentQuestions = [];
 var currentQuestion;
 var answered = false;
 var score = 0;
 var temp = [];
+var questions = [];
 
 //Draw LifeLines/////////////////////////////////////
 let lifelinesCanvas = document.getElementById('lifelines');
@@ -151,11 +154,16 @@ drawPadaoButton(0, 470, 200, 30, "Rs.1,000",'white','black', function() {});
 
 
 drawButton(canvas.width-220, 420, 200, 40, "NEXT QUESTION",'blue','white','16px Arial', function() {
+    
     answered = false;
     // clearText(50, 100, 300, 40,"blck",currentQuestion.q);
-    let qno = Math.floor(Math.random()*questions.length);
-    currentQuestion = questions[qno];
-    
+    // let qno = Math.floor(Math.random()*questions.length);
+    // currentQuestion = questions[qno];
+    // currentQuestions = getQuestionData();
+    currentQuestion = getQuestionData();
+    // currentQuestion = questions[0];
+    console.log("Question ",currentQuestion);
+
     drawButton(50, 100, 800, 40, currentQuestion.q,'black','white','18px Courier', function() {});    
 
     drawButton(20, 200, 300, 40, 'A. '+currentQuestion.A,'yellow','black','16px Arial', function() {
@@ -376,3 +384,27 @@ if(temp[0] == 'C' || temp[1] == 'C') {
      });
     }
 }
+
+/////Questions from Cloud ///////
+const API_URL = "https://opentdb.com/api.php?amount=1&type=multiple";
+
+async function getQuizData() {
+  const response = await fetch(API_URL);
+  const data = await response.json();
+  return data.results[0];
+}
+function getQuestionData() {
+    getQuizData().then((quizData) => {
+      let question = quizData.question;
+      let options = quizData.incorrect_answers.concat(quizData.correct_answer);
+      let correctAnswer = quizData.correct_answer;
+     
+      let answers = ['A','B','C','D'];
+      options.sort();
+      let key = Object.keys(options).find(k=>options[k]===correctAnswer);
+      questions = {q:quizData.question,A:options[0],B:options[1],C:options[2],D:options[3],ans:answers[key]};
+    });
+    return questions;
+  }
+
+/////////////////////////////////
