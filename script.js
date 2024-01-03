@@ -386,7 +386,8 @@ if(temp[0] == 'C' || temp[1] == 'C') {
 }
 
 /////Questions from Cloud ///////
-const API_URL = "https://opentdb.com/api.php?amount=1&type=multiple";
+// const API_URL = "https://opentdb.com/api.php?amount=1&type=multiple";
+const API_URL = "https://opentdb.com/api.php?amount=1&category=18&type=multiple";
 
 async function getQuizData() {
   const response = await fetch(API_URL);
