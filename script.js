@@ -161,33 +161,38 @@ drawButton(canvas.width-220, 420, 200, 40, "NEXT QUESTION",'blue','white','16px 
     // currentQuestion = questions[qno];
     // currentQuestions = getQuestionData();
     currentQuestion = getQuestionData();
+    // currentQuestion.q.replace("&quot;","\'");
+    // currentQuestion.A.replace("&quot;","\'");
+    // currentQuestion.B.replace("&quot;","\'");
+    // currentQuestion.C.replace("&quot;","\'");
+    // currentQuestion.D.replace("&quot;","\'");
     // currentQuestion = questions[0];
     console.log("Question ",currentQuestion);
 
-    drawButton(50, 100, 800, 40, currentQuestion.q,'black','white','18px Courier', function() {});    
+    drawButton(50, 100, 800, 40, currentQuestion.q.replaceAll("&quot;","\'"),'black','white','18px Courier', function() {});    
 
-    drawButton(20, 200, 300, 40, 'A. '+currentQuestion.A,'yellow','black','16px Arial', function() {
+    drawButton(20, 200, 300, 40, 'A. '+currentQuestion.A.replace("&quot;","\'"),'yellow','black','16px Arial', function() {
         if(answered == false) {
-        drawButton(20, 200, 300, 40, 'A. '+currentQuestion.A,'orange','black','16px Arial', function() {});          
+        drawButton(20, 200, 300, 40, 'A. '+currentQuestion.A.replace("&quot;","\'"),'orange','black','16px Arial', function() {});          
         setTimeout(callA,5000); 
         answered = true;
         }
     });
-    drawButton(canvas.width-320, 200, 300, 40, 'B. '+currentQuestion.B,'yellow','black','16px Arial', function() {
+    drawButton(canvas.width-320, 200, 300, 40, 'B. '+currentQuestion.B.replace("&quot;","\'"),'yellow','black','16px Arial', function() {
         if(answered == false) {
-        drawButton(canvas.width-320, 200, 300, 40, 'B. '+currentQuestion.B,'orange','black','16px Arial', function() {});
+        drawButton(canvas.width-320, 200, 300, 40, 'B. '+currentQuestion.B.replace("&quot;","\'"),'orange','black','16px Arial', function() {});
         setTimeout(callB,5000); 
         answered = true;
         }
     });
-    drawButton(20, 300, 300, 40, 'C. '+currentQuestion.C,'yellow','black','16px Arial', function() {
+    drawButton(20, 300, 300, 40, 'C. '+currentQuestion.C.replace("&quot;","\'"),'yellow','black','16px Arial', function() {
         if(answered == false) {
-        drawButton(20, 300, 300, 40, 'C. '+currentQuestion.C,'orange','black','16px Arial', function() {});
+        drawButton(20, 300, 300, 40, 'C. '+currentQuestion.C.replace("&quot;","\'"),'orange','black','16px Arial', function() {});
         setTimeout(callC,5000); 
         answered = true;
         }
      });
-     drawButton(canvas.width-320, 300, 300, 40, 'D. '+currentQuestion.D,'yellow','black','16px Arial', function() {
+     drawButton(canvas.width-320, 300, 300, 40, 'D. '+currentQuestion.D.replace("&quot;","\'"),'yellow','black','16px Arial', function() {
         if(answered == false) {
         drawButton(canvas.width-320, 300, 300, 40, 'D. '+currentQuestion.D,'orange','black','16px Arial', function() {});
         setTimeout(callD,5000); 
@@ -387,7 +392,8 @@ if(temp[0] == 'C' || temp[1] == 'C') {
 
 /////Questions from Cloud ///////
 // const API_URL = "https://opentdb.com/api.php?amount=1&type=multiple";
-const API_URL = "https://opentdb.com/api.php?amount=1&category=18&type=multiple";
+// const API_URL = "https://opentdb.com/api.php?amount=1&category=18&type=multiple";
+const API_URL = "https://opentdb.com/api.php?amount=50&category=9&difficulty=easy&type=multiple";
 
 async function getQuizData() {
   const response = await fetch(API_URL);
