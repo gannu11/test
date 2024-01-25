@@ -168,7 +168,15 @@ drawButton(canvas.width-220, 420, 200, 40, "NEXT QUESTION",'blue','white','16px 
     // currentQuestion.D.replace("&quot;","\'");
     // currentQuestion = questions[0];
     console.log("Question ",currentQuestion);
-    let arrayStr = splitString(currentQuestion.q.replaceAll("&quot;","\'").replaceAll("&ldquo;","\'").replaceAll("&rdquo;","\'").replaceAll("&oacute;","").replaceAll("&#039;","\'"));
+    if(currentQuestion == undefined || currentQuestion == null || currentQuestion == ""){
+        drawButton(50, 20, 800, 400, "",'black','blue','24px Courier', function() {}); 
+        drawButton(250, 200, 600, 40, "SITE UNDER MAINTENCE",'black','yellow','30px Courier', function() {}); 
+        drawButton(500, 300, 600, 40, "--- @Ganesh",'black','white','18px Comic Sans MS', function() {}); 
+    }
+     arrayStr = splitString(currentQuestion.q.replaceAll("&quot;","\'").replaceAll("&ldquo;","\'").replaceAll("&rdquo;","\'").replaceAll("&oacute;","").replaceAll("&#039;","\'"));
+    // arrayStr = splitString(currentQuestion.q);
+
+  
     if(arrayStr.length == 1) {
     drawButton(50, 100, 800, 40, arrayStr[0],'black','white','18px Courier', function() {}); 
     drawButton(50, 150, 800, 40, "",'black','white','18px Courier', function() {});     
@@ -398,7 +406,7 @@ if(temp[0] == 'C' || temp[1] == 'C') {
 
 /////Questions from Cloud ///////
 // const API_URL = "https://opentdb.com/api.php?amount=1&type=multiple";
-// const API_URL = "https://opentdb.com/api.php?amount=1&category=18&type=multiple";
+ //const API_URL = "https://opentdb.com/api.php?amount=1&category=18&type=multiple";
 const API_URL = "https://opentdb.com/api.php?amount=50&category=9&difficulty=easy&type=multiple";
 
 async function getQuizData() {
