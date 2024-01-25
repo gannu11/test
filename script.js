@@ -168,8 +168,14 @@ drawButton(canvas.width-220, 420, 200, 40, "NEXT QUESTION",'blue','white','16px 
     // currentQuestion.D.replace("&quot;","\'");
     // currentQuestion = questions[0];
     console.log("Question ",currentQuestion);
-
-    drawButton(50, 100, 800, 40, currentQuestion.q.replaceAll("&quot;","\'"),'black','white','18px Courier', function() {});    
+    let arrayStr = splitString(currentQuestion.q.replaceAll("&quot;","\'").replaceAll("&ldquo;","\'").replaceAll("&rdquo;","\'").replaceAll("&oacute;","").replaceAll("&#039;","\'"));
+    if(arrayStr.length == 1) {
+    drawButton(50, 100, 800, 40, arrayStr[0],'black','white','18px Courier', function() {}); 
+    drawButton(50, 150, 800, 40, "",'black','white','18px Courier', function() {});     
+    } else{
+        drawButton(50, 100, 800, 40, arrayStr[0],'black','white','18px Courier', function() {});    
+        drawButton(50, 150, 800, 40, arrayStr[1],'black','white','18px Courier', function() {});  
+    }
 
     drawButton(20, 200, 300, 40, 'A. '+currentQuestion.A.replace("&quot;","\'"),'yellow','black','16px Arial', function() {
         if(answered == false) {
@@ -415,3 +421,20 @@ function getQuestionData() {
   }
 
 /////////////////////////////////
+function splitString(inputString) {
+    // Split the input string into an array of words
+    const words = inputString.split(/\s+/);
+
+    // Check if the length of words is greater than 10
+    if (words.length > 10) {
+        // If yes, split the array into two parts
+        const firstPart = words.slice(0, 10).join(' ');
+        const secondPart = words.slice(10).join(' ');
+
+        // Return an array with the two parts
+        return [firstPart, secondPart];
+    } else {
+        // If the length is 10 or less, return the original string
+        return [inputString];
+    }
+}
