@@ -17,6 +17,7 @@ var answered = false;
 var score = 0;
 var temp = [];
 var questions = [];
+let x =50, y=100;
 
 //Draw LifeLines/////////////////////////////////////
 let lifelinesCanvas = document.getElementById('lifelines');
@@ -168,11 +169,13 @@ drawButton(canvas.width-220, 420, 200, 40, "NEXT QUESTION",'blue','white','16px 
     // currentQuestion.D.replace("&quot;","\'");
     // currentQuestion = questions[0];
     console.log("Question ",currentQuestion);
-    if(currentQuestion == undefined || currentQuestion == null || currentQuestion == ""){
-        drawButton(50, 20, 800, 400, "",'black','blue','24px Courier', function() {}); 
-        drawButton(250, 200, 600, 40, "SITE UNDER MAINTENCE",'black','yellow','30px Courier', function() {}); 
-        drawButton(500, 300, 600, 40, "--- @Ganesh",'black','white','18px Comic Sans MS', function() {}); 
-    }
+    // if(currentQuestion == undefined || currentQuestion == null || currentQuestion == ""){
+    //     drawButton(50, 20, 800, 400, "",'black','blue','24px Courier', function() {}); 
+    //     drawButton(250, 200, 600, 40, "SITE UNDER MAINTENCE",'black','yellow','30px Courier', function() {}); 
+    //     // drawButton(500, 300, 600, 40, "--- @Ganesh",'black','white','18px Comic Sans MS', function() {}); 
+    //     setTimeout(whiteText,20);
+    // }else{
+        {
      arrayStr = splitString(currentQuestion.q.replaceAll("&quot;","\'").replaceAll("&ldquo;","\'").replaceAll("&rdquo;","\'").replaceAll("&oacute;","").replaceAll("&#039;","\'"));
     // arrayStr = splitString(currentQuestion.q);
 
@@ -214,6 +217,7 @@ drawButton(canvas.width-220, 420, 200, 40, "NEXT QUESTION",'blue','white','16px 
         }
      });
      drawButton(20, 440, 200, 40, '@Ganesh 2023','rgba(0,0,100,0.3)','white','20px Arial', function(){});
+    }
 });
 function callA() {
     if(currentQuestion.ans == 'A'){ 
@@ -445,4 +449,13 @@ function splitString(inputString) {
         // If the length is 10 or less, return the original string
         return [inputString];
     }
+} //Animation text
+function whiteText(){
+    drawButton(x, y, 600, 40, "--- @Ganesh",'black','white','18px Comic Sans MS', function() {}); 
+    setTimeout(blackText,20);
+}
+function blackText(){
+    drawButton(x, y, 600, 40, "--- @Ganesh",'black','black','18px Comic Sans MS', function() {}); 
+    x++;
+    y++;
 }
