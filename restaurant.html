@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<link rel="stylesheet" href="./rest.css">
+	<script src="./restaurant.js"></script>
+</head>
+<body>
+	<h1>Eat Well Restaurant</h1>
+	<h2>Make your booking</h2>
+	<table>
+		<tr>
+            <td colspan="2">Customer Name:</td>            
+            <td colspan="2"><input type="text" id="bname"></td>
+        </tr>
+		<tr>
+            <td colspan="2">Customer Mobile:</td>            
+            <td colspan="2"><input type="text" id="mobile"></td>
+        </tr>
+        <tr>
+            <td>Table:</td>
+            <td><select name="tableno" id="tableno"></select></td>
+            <td>Time slot:</td>
+            <td><select name="slot" id="slot"></select></td>
+        </tr>
+        <tr><td colspan="2"><Button id="bookbtn" onclick="loadTables()">Click to Load tables and slots</Button></td><td colspan="2"><p id="msg"></p></td></tr>
+      </table>
+	  <center><button class="heading2" onclick="myLoad()">Click to vew Booked slots</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button class="heading3" onclick="clearBookings()">Clear Bookings</button>
+	</center>
+    <table id="recordtable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Table No.</th>
+            <th>Slot</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+	  
+</body>
+</html>
